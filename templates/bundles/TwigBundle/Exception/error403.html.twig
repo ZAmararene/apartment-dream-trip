@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Autorisation interdite {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Accès à la page web refusé</h1>
+        <div class="alert alert-danger">
+            <p>Cette page contient des données confidentielles, vous ne pouvez pas y accéder, mais vous pouvez revenir à la page d'acceuil.</p>
+        </div>
+            <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+{% endblock %}
