@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\AccountType;
 use App\Repository\RoleRepository;
 use App\Repository\UserRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +16,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminUserController extends AbstractController
 {
     /**
-     * @Route("/admin/users", name="admin_user_index")
+     * @Route("/admin/users/{page<\d+>?1}", name="admin_user_index")
      */
-    public function index(UserRepository $repos, RoleRepository $roleRepos)
+    public function index(RoleRepository $roleRepos, $page, PaginationService $pagination)
     {
+        $pagination->setEntityClass(User::class)
+            ->setCurrentPage($page);
+
+
         return $this->render('admin/user/index.html.twig', [
-            'users' => $repos->findAll(),
+            'pagination' => $pagination,
             'admins' => $roleRepos->findBy(['title' => 'ROLE_ADMIN'])
         ]);
     }

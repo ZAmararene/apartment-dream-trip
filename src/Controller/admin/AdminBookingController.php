@@ -4,7 +4,7 @@ namespace App\Controller\admin;
 
 use App\Entity\Booking;
 use App\Form\AdminBookingType;
-use App\Repository\BookingRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,12 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminBookingController extends AbstractController
 {
     /**
-     * @Route("/admin/bookings", name="admin_booking_index")
+     * @Route("/admin/bookings/{page<\d+>?1}", name="admin_booking_index")
      */
-    public function index(BookingRepository $repos)
+    public function index($page, PaginationService $pagination)
     {
+        $pagination->setEntityClass(Booking::class)
+            ->setCurrentPage($page);
+
         return $this->render('admin/booking/index.html.twig', [
-            'bookings' => $repos->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -46,7 +49,7 @@ class AdminBookingController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "La réservation " . $booking->getId() . "a bien été modifiée."
+                "La réservation " . $booking->getId() . " a bien été modifiée."
             );
 
             return $this->redirectToRoute('admin_booking_index');
@@ -73,7 +76,7 @@ class AdminBookingController extends AbstractController
 
         $this->addFlash(
             'success',
-            'La réservation numéro a bien été supprimée.'
+            'La réservation a bien été supprimée.'
         );
 
         return $this->redirectToRoute('admin_booking_index');
