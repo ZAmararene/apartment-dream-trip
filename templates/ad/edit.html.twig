@@ -19,5 +19,6 @@
 {% endblock %}
 
 {% block javascripts %}
-<script src="/js/add.js"></script>
+    {{ parent () }}
+    {{ encore_entry_script_tags('ad') }}
 {% endblock %}

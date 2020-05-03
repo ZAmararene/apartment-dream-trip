@@ -45,13 +45,11 @@
                     </div>
                 </div>
             </div>
-
-            {# {{ form_widget(form, {'attr' : {'novalidate' : 'novalidate' }}) }} #}
-
         {{ form_end(form) }}
     </div>
 {% endblock %}
 
 {% block javascripts %}
-<script src="/js/add.js"></script>
+    {{ parent () }}
+    {{ encore_entry_script_tags('ad') }}
 {% endblock %}
