@@ -4,52 +4,56 @@
 
 {% block body %}
 <div class="container-fluid">
-    <h1 class="my-5">Gestion des utilisateurs</h1>
+    <h1 class="my-5 text-center">Gestion des utilisateurs</h1>
 
     <h2 class="mb-3">Administrateurs</h2>
 
-    <table class="table table-striped">
-        <thead>
-            <tr class="bg-secondary">
-                <th>Id</th>
-                <th>Administrateur</th>
-                <th>email</th>
-                <th>Introduction</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for admin in admins %}
-            {% for user in admin.users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>
-                        <img src="{{ user.picture }}" class="avatar avatar-mini mr-2" alt="Avatar de {{ user.fullName }}">
-                        <span>{{ user.fullName }}</span>
-                    </td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.introduction }}</td>
-                    <td>{{ user.description | raw }}</td>
-                    <td class="text-center">
-                        <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="btn btn-primary mb-2">
-                            <i class="fas fa-pen"></i>
-                        </a>
-                        <a href="" class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr  class="text-center">
+                    <th>Id</th>
+                    <th>Administrateur</th>
+                    <th>email</th>
+                    <th>Introduction</th>
+                    <th>Description</th>
+                    <th>Actions</th>
                 </tr>
+            </thead>
+            <tbody>
+            {% for admin in admins %}
+                {% for user in admin.users %}
+                    <tr>
+                        <td class="text-center font-weight-bold">{{ user.id }}</td>
+                        <td>
+                            <div class="media position-relative">
+                                <img src="{{ user.picture }}" class="avatar avatar-mini mr-2" alt="Avatar de {{ user.fullName }}">
+                                <div class="media-body">
+                                    <span>{{ user.fullName }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.introduction }}</td>
+                        <td class="text-justify">{{ user.description | raw }}</td>
+                        <td class="text-center">
+                            <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="link-fa-edit d-flex justify-content-center mb-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <h2 class="mb-3">Utilisateurs</h2>
 
-    <table class="table table-striped">
+    <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
-                <tr class="bg-secondary">
+                <tr class="text-center">
                     <th>Id</th>
                     <th>Utilistaeur</th>
                     <th>email</th>
@@ -61,29 +65,30 @@
             <tbody>
                 {% for user in pagination.data %}
                     <tr>
-                        <td>{{ user.id }}</td>
+                        <td class="text-center font-weight-bold">{{ user.id }}</td>
                         <td>
-                            <img src="{{ user.picture }}" class="avatar avatar-mini mr-2" alt="Avatar de {{ user.fullName }}">
-                            <span>{{ user.fullName }}</span>
+                            <div class="media position-relative">
+                                <img src="{{ user.picture }}" class="avatar avatar-mini mr-2" alt="Avatar de {{ user.fullName }}">
+                                <div class="media-body">
+                                    <span>{{ user.fullName }}</span>
+                                </div>
+                            </div>
                         </td>
                         <td>{{ user.email }}</td>
                         <td>{{user.introduction}}</td>
-                        <td>{{ user.description | raw}}</td>
+                        <td class="text-justify">{{ user.description | raw}}</td>
                         <td class="text-center">
-                            <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="btn btn-primary mb-2">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <a href="{{ path('admin_user_delete', {'id' : user.id}) }}" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
+                            <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="link-fa-edit d-flex justify-content-center mb-2">
+                                <i class="fas fa-edit"></i>
                             </a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <hr>
 
-        <hr>
-
-        {{ pagination.display() }}
+    {{ pagination.display() }}
 </div>
 {% endblock %}

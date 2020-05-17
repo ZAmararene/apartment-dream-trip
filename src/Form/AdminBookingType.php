@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AdminBookingType extends AbstractType
 {
@@ -18,18 +19,24 @@ class AdminBookingType extends AbstractType
     {
         $builder
             ->add('startDate', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label' => "Date d'arrivée"
             ])
             ->add('endDate', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label' => 'Date de départ'
             ])
-            ->add('comment')
+            ->add('comment', TextareaType::class, [
+                'label' => 'Commentaire'
+            ])
             ->add('ad', EntityType::class, [
                 'class' => Ad::class,
-                'choice_label' => 'title'
+                'choice_label' => 'title',
+                'label' => "Titre de l'annonce"
             ])
             ->add('booker', EntityType::class, [
                 'class' => User::class,
+                'label' => 'Voyageur',
                 'choice_label' => function ($user) {
                     return $user->getFirstName() . " " . strtoupper($user->getLastName());
                 }

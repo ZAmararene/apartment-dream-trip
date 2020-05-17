@@ -3,14 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Booking;
-use App\Form\ApplicationType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\FrenchToDateTimeTransformer;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class BookingType extends ApplicationType
+class BookingType extends AbstractType
 {
     private $transformer;
 
@@ -25,26 +25,23 @@ class BookingType extends ApplicationType
             ->add(
                 'startDate',
                 TextType::class,
-                $this->getConfiguration(
-                    "Date d'arrivée",
-                    'La date à laquelle vous comptez arriver...'
-                )
+                [
+                    'label' => "Date d'arrivée *"
+                ]
             )
             ->add(
                 'endDate',
                 TextType::class,
-                $this->getConfiguration(
-                    'Date de départ',
-                    'La date à laquelle vous quittez les lieux...'
-                )
+                [
+                    'label' => "Date de départ *"
+                ]
             )
             ->add(
                 'comment',
-                TextType::class,
-                $this->getConfiguration(false, 'Laissez un commentaire...', [
-                    "required" => false
-                ])
-
+                TextareaType::class,
+                [
+                    'required' => false
+                ]
             );
 
         $builder->get('startDate')->addModelTransformer($this->transformer);

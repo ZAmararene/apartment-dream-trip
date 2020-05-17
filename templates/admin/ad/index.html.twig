@@ -4,47 +4,57 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1 class="my-5">Gestion des annonces</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr class="bg-secondary">
-                    <th class="text-center">Id</th>
-                    <th>Titre</th>
-                    <th>Auteur</th>
-                    <th class="text-center">Réservation</th>
-                    <th class="text-center">Note</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
+        <h1 class="my-5 text-center">Gestion des annonces</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titre de l'annonce</th>
+                        <th scope="col">Auteur</th>
+                        <th scope="col">Réservation</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {% for ad in pagination.data %}
-                <tr>
-                    <td class="text-center">{{ ad.id }}</td>
-                    <td>{{ ad.title }}</td>
-                    <td>
-                        <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-mini mr-2">
-                        {{ ad.author.fullName }}
-                    </td>
-                    <td class="text-center">
-                        <span class="badge badge-primary rounded">
-                            {{ ad.bookings | length }}
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <span class="badge badge-primary rounded">
-                            {{ ad.avgRatings | number_format(1, ',', ' ') }}
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <a href="{{ path('admin_ads_edit', {'id' : ad.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <a href="{{ path('admin_ads_delete', {'id' : ad.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
+                <tbody>
+                    {% for ad in pagination.data %}
+                    <tr scope="row">
+                        <td class=" font-weight-bold">{{ ad.id }}</td>
+                        <td>{{ ad.title }}</td>
+                        <td>
+                            <div class="media position-relative">
+                                <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-mini mr-2">
+                                <div class="media-body mt-2">
+                                    {{ ad.author.fullName }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">
+                                {{ ad.bookings | length }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">
+                                {{ ad.avgRatings | number_format(1, ',', ' ') }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('admin_ads_edit', {'id' : ad.id}) }}" class="link-fa-edit d-flex justify-content-center mb-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ path('admin_ads_delete', {'id' : ad.id}) }}" class="link-fa-trash"
+                                onclick="return confirm(`Êtes-vous sur de vouloir supprimer l'annonce : {{ ad.title }}`)">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         <hr>
 
         {{ pagination.display() }}

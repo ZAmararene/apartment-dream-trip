@@ -3,14 +3,20 @@
 div.container, div.container-fluid {
     margin-top: 20px;
 }
+a{
+    color: #000;
+}
 
+a, a:hover {
+    text-decoration: none !important;
+}
 div.ad-title {
     padding: 2em;
     background-size: cover;
     background-position: center center;
 
     h1, p {
-        color: white;
+        color: #FFF;
         text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     }
 
@@ -21,8 +27,15 @@ div.ad-title {
     }
 }
 
-div.carousel-caption {
-    text-shadow: 3px 3px 3px rgba(0,0,0, 0.5);
+div.carousel {
+    .carousel-caption {
+        color: #E70739;
+        text-shadow: 3px 3px 3px rgba(0,0,0, 0.5);
+    }
+
+    .carousel-control-next .carousel-control-next-icon {
+        color:#E70739 !important;
+    }
 }
 
 .avatar {
@@ -31,18 +44,18 @@ div.carousel-caption {
     border-radius: 50%;
 
     &.avatar-medium {
-        max-width: 64px;
-        max-height: 64px;
+        max-width: 70px;
+        max-height: 70px;
     }
 
     &.avatar-mini {
-        max-width: 24px;
-        max-height: 24px;
+        max-width: 50px;
+        max-height: 50px;
     }
 
     &.avatar-micro {
-        max-width: 20px;
-        max-height: 20px;
+        max-width: 24px;
+        max-height: 24px;
     }
 }
 
@@ -52,12 +65,27 @@ div.carousel-caption {
 }
 
 span.rating i {
-    color: goldenrod;
+    color:#F0C755;
+}
+
+.ad-title-book em, #amount {
+    color: #006D80;
 }
 
 .alert {
-    a {
-        text-decoration: none;
+    background-color: #FBF9F5;
+    color: #000;
+
+    &.alert-danger{
+        color:  #E70739 !important;
+    }
+
+    &.alert-warning{
+        color: #FC7F3C;
+    }
+
+    &.alert-info small, &.alert-info .alert-comment {
+        color:#006D80;
     }
 
     .btn {
@@ -65,8 +93,179 @@ span.rating i {
     }
 }
 
+.btn {
+    .btn-danger {
+        background-color: #E70739 !important;
+    }
 
+    &.btn-primary, .btn-success {
+        background-color: #FF483D !important;
+        border-color: #FF483D;
+    }
 
+    &.btn-primary:hover {
+        color: #000;
+        border-color: #FF483D;
+    }
+
+    &.btn-success {
+        background-color:#FC7F3C !important;
+        border-color: #FC7F3C;
+    }
+
+    .btn-success:hover {
+        color: #000;
+        border-color: #FC7F3C;
+    }
+
+    &.btn-link{
+        color: #006D80;
+        font-weight: 700;
+    }
+}
+
+.logo {
+    color : #FF483D !important;
+    text-shadow: 2px 2px 2px rgba(255,72,61,0.3);
+
+    span {
+        color: #006D80;
+        text-shadow: 2px 2px 2px rgba(0,109,128,0.3);
+    }
+}
+
+.banner {
+    background-color: #FBF9F5;
+    margin-top: 0em !important;
+    padding: 30px 40px;
+
+    .h1 {
+        text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    }
+}
+
+.navbar-nav .nav-item{
+    .btn-connection{
+        padding: 6px;;
+        color: #000;
+        -webkit-box-shadow: 0px 3px 7px 1px rgba(220,220,220,1);
+        -moz-box-shadow: 0px 3px 7px 1px rgba(220,220,220,1);
+        box-shadow: 0px 3px 7px 1px rgba(220,220,220,1);
+    }
+
+    a:hover {
+        color: #FC7F3C !important;
+    }
+
+    a.active {
+        color: #FC7F3C !important;
+    }
+
+    .nav-user {
+        color:  #006D80 !important;
+    }
+}
+
+.card .card-header, .card-login {
+    background-color:  #FBF9F5;
+}
+
+.card .card-body{
+    background-color: #FFF !important;
+
+    .card-ad-title{
+        color: #006D80;
+    }
+
+    .card-ad-title:hover{
+        color: #FF483D !important;
+    }
+
+    .ad-link {
+        font-weight: 500;
+        color: #000;
+        text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    }
+
+    .ad-link:hover {
+        color: #FF483D;
+    }
+
+    .ad-link .fas {
+        color: #006D80;
+    }
+}
+
+.author-link {
+    a{
+        color: #006D80;
+    }
+
+    a:hover {
+        color: #FF483D;
+    }
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.navbar-admin {
+    background-color:#EFF0FF;
+
+    .nav-item a, .nav-item .dropdown-menu a, i{
+        color: #000 !important;
+    }
+}
+
+table {
+    thead tr {
+        background-color: #FBF9F5;
+    }
+}
+
+td a {
+    &.link-fa-trash, .fa-pen {
+        color: #E70739 !important;
+    }
+
+    &.link-fa-edit {
+        color: #FC7F3C !important;
+    }
+}
+
+//pagination
+.page-item.active .page-link{
+    background-color: #FC7F3C !important;
+    border-color: #FC7F3C;
+    color: #000;
+}
+
+.page-link {
+    color: #000;
+}
+
+.fil-arian:hover {
+    color: #FC7F3C;
+}
+
+@media (max-width: 900px) {
+    h1{
+        font-size: 1.7em !important;
+    }
+
+    h2 {
+        font-size: 1.5em !important;
+    }
+
+    .col-rating-sm {
+        text-align: left !important;
+    }
+
+    .author-link {
+        margin-left: 5em;
+    }
+}
 
 
 

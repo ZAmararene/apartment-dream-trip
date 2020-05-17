@@ -1,22 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('homepage') }}">SymBNB</a>
+    <a class="navbar-brand logo" href="{{ path('homepage') }}">Sym<span>BNB</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto my-3">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}"
+                    href="{{ path('homepage') }}">
+                    Accueil
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('ads_index') }}">Annonces</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == 'ads_index' %}active{% endif %}"
+                    href="{{ path('ads_index') }}">
+                    Annonces
+                </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             {% if app.user %}
                 <li class="nav-item dropdown">
-                    <a href="#" class="navlink dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
+                    <a href="#" class="navlink nav-user dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
                         <img src="{{ app.user.picture }}" class="avatar avatar-mini" alt="Avatar de {{ app.user.fullName }}">
                         {{ app.user.fullName }}
                     </a>
@@ -32,11 +38,18 @@
                     </div>
                 </li>
             {% else %}
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('account_register') }}">Inscription</a>
+                    <a class="nav-link btn btn-light btn-connection rounded-pill mr-3 d-inline-block{% if app.request.attributes.get('_route') == 'account_login' %}active{% endif %}"
+                        href="{{ path('account_login') }}">
+                        Connexion
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('account_login') }}">Connexion</a>
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'account_register' %}active{% endif %}"
+                        href="{{ path('account_register') }}">
+                        Inscription
+                    </a>
                 </li>
             {% endif %}
         </ul>

@@ -6,14 +6,16 @@
 
 {% block body %}
 <div class="container">
-    <h1>Modifier l'annonce : {{ ad.title }}</h1>
+    <h1 class="text-center">Modifier l'annonce</h1>
+    <h2 class="h3 ad-title-book">Annonce : <em>{{ ad.title }}</em></h2>
+    <hr>
 
     {{ form_start(form) }}
+        <div class="alert clearfix">
+            {{ form_widget(form, {'attr' : {'novalidate' : 'novalidate' }}) }}
 
-        {{ form_widget(form, {'attr' : {'novalidate' : 'novalidate' }}) }}
-
-    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-
+            <button type="submit" class="btn btn-primary float-right">Enregistrer les modifications</button>
+        </div>
     {{ form_end(form) }}
 </div>
 {% endblock %}

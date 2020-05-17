@@ -12,9 +12,9 @@ class PasswordUpdateType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('oldPassword', PasswordType::class, $this->getConfiguration('Ancien mot de passe', 'Votre mot de passe actuel...'))
-            ->add('newPassword', PasswordType::class, $this->getConfiguration('Nouveau mot de passe', 'Votre nouveau mot de passe...'))
-            ->add('confirmPassword', PasswordType::class, $this->getConfiguration('Confirmation du mot de passe', 'Confirmez votre nouveau mot de passe...'));
+            ->add('oldPassword', PasswordType::class, $this->getConfiguration('Ancien mot de passe', 'Mot de passe actuel...'))
+            ->add('newPassword', PasswordType::class, $this->getConfiguration('Nouveau mot de passe', 'Nouveau mot de passe...'))
+            ->add('confirmPassword', PasswordType::class, $this->getConfiguration('Confirmation du mot de passe', 'Confirmez le nouveau mot de passe...'));
     }
 
     public function configureOptions(OptionsResolver $resolver)

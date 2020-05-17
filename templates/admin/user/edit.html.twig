@@ -4,9 +4,13 @@
 
 {% block body %}
     <div class="container">
+        <div>
+            <p><a href="{{ path('admin_user_index') }}" class="fil-arian">Utilisateurs</a> > Modifier un utilisateur</p>
+        </div>
+
         <div class="row">
             <div class="col-10 mx-auto">
-                <h1 class="my-5">Modification de l'utilisateur n° {{ user.id }}</h1>
+                <h1 class="my-5 text-center">Modification de l'utilisateur n° {{ user.id }}</h1>
                 <div class="mx-auto alert alert-light clearfix">
                     {{ form_start(form)}}
                         {{ form_widget(form) }}

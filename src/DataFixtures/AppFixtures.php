@@ -32,8 +32,8 @@ class AppFixtures extends Fixture
 
         $adminUser = new User();
         $adminUser->setFirstName('Linda')
-            ->setLastName('Amararene')
-            ->setEmail('linda@gmail.com')
+            ->setLastName('Bernard')
+            ->setEmail('admin@symfony.com')
             ->setHash($this->encoder->encodePassword($adminUser, 'password'))
             ->setPicture('https://randomuser.me/api/portraits/women/76.jpg')
             ->setIntroduction($faker->sentence())
@@ -83,7 +83,6 @@ class AppFixtures extends Fixture
             $ad = new Ad();
 
             $title = $faker->sentence();
-            // $coverImage = $faker->imageUrl(1000, 350);
             $coverImage = "https://picsum.photos/600/300?random=" . mt_rand(1, 999);
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join('</p><p>', $faker->paragraphs(5)) . '</p>';
@@ -134,7 +133,7 @@ class AppFixtures extends Fixture
                 $manager->persist($booking);
 
                 // Gestion des commentaires
-                if (mt_rand(0, 1)) {
+                if (mt_rand(0, 5)) {
                     $comment = new Comment();
 
                     $comment->setContent($faker->paragraph())

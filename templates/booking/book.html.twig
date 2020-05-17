@@ -9,36 +9,41 @@
 
 {% block body %}
     <div class="container">
-        <h1>Réservez pour l'annonce : <em>{{ ad.title }}</em></h1>
+        <div class="row">
+            <div class="col-md-9 offset-md-1">
+                <h1 class="text-center">Réservation</h1>
+                <h2 class="h3 ad-title-book">Annonce : <em>{{ ad.title }}</em></h2>
+                <hr>
+                <p>Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullName }}</strong>, dites nous tout, on s'occupe du reste !</p>
 
-        <p>Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullName }}</strong>, dites nous tout, on s'occupe du reste !</p>
+                {{ form_start(form) }}
+                    <div class="alert">
+                        <h2 class="h5">Disponibilité</h2>
+                        <div class="row">
+                            <div class="col">
+                                {{form_row(form.startDate)}}
+                            </div>
+                            <div class="col">
+                                {{form_row(form.endDate)}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="btn-outline-dark bg-white btn-lg text-dark text-center" id="reserve">
+                            <span id="days">0</span> nuit(s)
+                            <p><span class="font-weight-bold">{{ad.price | number_format(2, ',', ' ')}} &euro; </span>par nuit</p>
+                            <h3 class="h6 mt-2">Montant du séjour : <span id="amount"></span></h3>
+                        </div>
+                        <hr>
+                        <h4 class="h6 mt-3">Commentaire</h4>
+                        {{ form_widget(form.comment) }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-3">Réserver</button>
+                    </div>
 
-        {{ form_start(form) }}
-        <div class="alert alert-light">
-            <h2 class="h4">Commencez par nous dire quelles sont les dates qui vous intéressent !</h2>
-            <div class="row">
-                <div class="col">
-                    {{form_row(form.startDate)}}
-                </div>
-                <div class="col">
-                    {{form_row(form.endDate)}}
-                </div>
+                {{form_end(form)}}
             </div>
-            <h4 class="mt-2">Montant du séjour : <span id="amount">...</span> &euro;</h4>
-            <span id="days">0</span> nuit(s) à {{ad.price | number_format(2, ',', ' ')}} &euro; par nuit
-
-            <h4 class="mt-3">Vous avez un commentaire ?</h4>
-            {{ form_row(form.comment) }}
         </div>
-
-
-        <h2>Vous avez terminé !</h2>
-        <p>Vacances de rêve ? Hébergement pour le boulot ? Peu importe, on est avec vous !</p>
-
-        <button type="submit" class="btn btn-success">Je réserve !</button>
-
-        {{form_end(form)}}
-
     </div>
 {% endblock %}
 
@@ -74,7 +79,7 @@
                 const amount = days * {{ ad.price }};
 
                 $('#days').text(days);
-                $('#amount').text(amount.toLocaleString('fr-FR'));
+                $('#reserve #amount').text(amount.toLocaleString('fr-FR')).append('&euro;');
             }
         }
     </script>

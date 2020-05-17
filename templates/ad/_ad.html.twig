@@ -1,30 +1,40 @@
 {% set url = path('ads_show', {'slug' : ad.slug}) %}
 
-<div class="col-md-4">
-    <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-            {{ ad.rooms }} chambres, <strong>{{ ad.price | number_format(2, ',', ' ') }} &euro; / nuit</strong> <br>
+<div class="col-md-4 my-2">
+    <div class="card-group h-100">
+        <div class="card bg-light mb-3 rounded-0">
+            <div class="card-header text-center">
+                {{ ad.rooms }} chambres, <strong>{{ ad.price | number_format(2, ',', ' ') }} &euro; / nuit</strong> <br>
 
-            {% if ad.comments|length > 0 %}
-                {% include 'partials/rating.html.twig' with {'rating' : ad.avgRatings} %}
-            {% else %}
-            <small>Pas encore noté</small>
-            {% endif %}
-        </div>
-        <a href="{{ url }}">
-            <img src="{{ ad.coverImage }}" alt="Image appartement" style="width:100%; height:200px; display:block">
-        </a>
-        <div class="card-body">
+                {% if ad.comments|length > 0 %}
+                    {% include 'partials/rating.html.twig' with {'rating' : ad.avgRatings} %}
+                {% else %}
+                    <small>Pas encore noté</small>
+                {% endif %}
+            </div>
             <a href="{{ url }}">
-                <h4 class="card-title">{{ ad.title }}</h4>
+                <img src="{{ ad.coverImage }}" alt="Image appartement" style="width:100%; height:200px; display:block">
             </a>
-            <p class="card-text">{{ ad.introduction }}</p>
+            <div class="card-body">
+                <a href="{{ url }}" class="card-ad-title">
+                    <h5 class="card-title text-truncate">{{ ad.title }}</h5>
+                </a>
 
-            <a href="{{ url }}" class="btn btn-primary float-right">En savoir plus</a>
+                <p class="card-text">{{ ad.introduction }}</p>
 
-            {% if app.user and app.user == ad.author %}
-                <a href="{{ path('ads_edit', {'slug' : ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-            {% endif %}
+                <a href="{{ url }}" class="ad-link text-center d-block">
+                    En savoir plus
+                    <i class="fas fa-angle-double-right ml-2 align-middle"></i>
+                </a>
+
+                {% if app.user and app.user == ad.author %}
+                    <a href="{{ path('ads_edit', {'slug' : ad.slug}) }}"
+                        class="ad-link d-block text-center">
+                        Modifier l'annonce
+                        <i class="fas fa-pen align-middle"></i>
+                    </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

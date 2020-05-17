@@ -4,11 +4,11 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="my-5">Modification du profil</h1>
+    <h1 class="my-5 text-center">Modification du profil</h1>
 
     {{ form_start(form) }}
         <div class="row">
-            <div class="col">
+            <div class="col-md-6">
                 <div class="alert alert-light">
                     <h2 class="alert-heading">Informations générales</h2>
                     <hr>
@@ -18,7 +18,7 @@
                     {{ form_row(form.picture) }}
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 <div class="alert alert-light clearfix">
                     <h2 class="alert-heading">Détail de l'annonce</h2>
                     <hr>
